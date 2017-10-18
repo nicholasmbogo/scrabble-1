@@ -16,10 +16,29 @@ class Scrabble
   end
 
 
-    def score(word)
-      letters = word.upcase.chars
-      letters.inject(0) do |sum, letter|
-        sum += @point_values[letter]
+  def score(word)
+    return 0 if word.nil?
+    letters = word.upcase.chars
+    letters.inject(0) do |sum, letter|
+      sum += @point_values[letter]
     end
+  end
+
+  def score_with_multipliers(word, letter_multipliers, word_multiplier = 1)
+    letters = word.upcase.chars
+    result = letters.map.with_index do |letter, index|
+      @point_values[letter] * letter_multipliers[index]
+      #result.inject(0)
+      #result * word_multiplier
+
+    end.reduce(:+)
+    #result * word_multiplier
+
+    if word.length >= 7
+      result += 10
+      
+    end
+    result * word_multiplier
+
   end
 end
