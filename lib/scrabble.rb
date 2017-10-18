@@ -36,9 +36,12 @@ class Scrabble
 
     if word.length >= 7
       result += 10
-      
+
     end
     result * word_multiplier
 
+  end
+
+  def highest_scoring_word(word)
   end
 end
